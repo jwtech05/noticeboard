@@ -1,9 +1,5 @@
 package org.zerock.mapper;
 
-import javax.sql.DataSource;
-
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -19,11 +15,11 @@ import lombok.extern.log4j.Log4j;
 public class BoardMapperTests {
 	
 	@Setter(onMethod_= {@Autowired})
-	private BoardMapper mapper;
+	private BoardMapper BoardMapper;
 	
 	@Test
 	public void testGetList() {
-		mapper.getList().forEach(board -> log.info(board));
+		BoardMapper.getList().forEach(board -> log.info(board));
 	}
 	
 }
