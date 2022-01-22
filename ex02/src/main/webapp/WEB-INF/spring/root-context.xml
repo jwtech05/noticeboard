@@ -13,8 +13,8 @@
 			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="jdbcUrl"
 			value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
-		<property name="username" value="c##book_ex"></property>
-		<property name="password" value="book_ex"></property>
+		<property name="username" value="sys as sysdba"></property>
+		<property name="password" value="p247952p"></property>
 	</bean>
 	
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">

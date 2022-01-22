@@ -25,8 +25,8 @@ public class JDBCTests {
 		try(Connection con =
 			DriverManager.getConnection(
 					"jdbc:oracle:thin:@localhost:1521:XE",
-					"c##book_ex",
-					"book_ex")){
+					"sys as sysdba",
+					"p247952p")){
 			
 			log.info(con);
 		} catch (Exception e) {
