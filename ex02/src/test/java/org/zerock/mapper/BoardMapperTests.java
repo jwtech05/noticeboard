@@ -1,9 +1,12 @@
 package org.zerock.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -20,7 +23,9 @@ public class BoardMapperTests {
 	
 	@Test
 	public void testGetList() {
+		
 		mapper.getList().forEach(board -> log.info(board));
+		
 	}
 	
 	@Test
@@ -76,5 +81,19 @@ public class BoardMapperTests {
 		
 		int count = mapper.update(board);
 		log.info("UPDATE COUNT: "+ count);
+	}
+	
+	
+	@Test
+	public void testPaging() {
+		
+		Criteria cri = new Criteria();
+		
+		cri.setPageNum(3);
+		cri.setAmount(10);
+		
+		List<BoardVO> list = mapper.getListWithPaging(cri);
+		
+		list.forEach(board -> log.info(board));
 	}
 }
