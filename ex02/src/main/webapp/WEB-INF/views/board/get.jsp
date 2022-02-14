@@ -31,12 +31,15 @@
 					<div class="form-group">
 						<label>Writer</label> <input class="form-control" name='writer' value='<c:out value="${board.writer }"/>' readonly="readonly">
 					</div>
-					<button data-oper='modify' class="btn btn-default"}>Modify</button>
-					<button data-oper='list'  class="btn btn-default">List</button>
+					<button data-oper='modify' class="btn btn-default">Modify</button>
+					<button data-oper='list' class="btn btn-info">List</button>
 					
 					<form id='operForm' action="/board/modify" method="get">
 						<input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
+						<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+						<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
 					</form>
+					
 			</div>
 		</div>
 	</div>
@@ -50,14 +53,14 @@
 			
 			operForm.attr("action","/board/modify").submit();
 
-		})
+		});
 		
 		$("button[data-oper='list']").on("click", function(e){
 			
 			operForm.find("#bno").remove();
-			operForm.attr("action","/board/list")
-			operFrom.submit();
-		})
-	})
+			operForm.attr("action","/board/list").submit();
+		});
+	});
 </script>
+
 <%@include file="../includes/footer.jsp"%>
