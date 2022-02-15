@@ -1,5 +1,9 @@
 package org.zerock.domain;
 
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.queryParam;
+
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -28,4 +32,5 @@ public class Criteria {
 		
 		return type == null? new String[] {}: type.split("");
 	}
+	
 }
