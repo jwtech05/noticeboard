@@ -156,6 +156,7 @@
 			
 			console.log('click');
 			
+			actionForm.attr("action","/board/list");
 			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 			actionForm.submit();
 		});
