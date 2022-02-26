@@ -2,7 +2,54 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@include file="../includes/header.jsp" %>
+<div class='bigPictureWrapper'>
+	<div class='bigPicture'>
+	</div>
+</div>
 
+<style>
+.uploadResult{
+	width:100%;
+	background-color: gray;
+}
+.uploadResult ul{
+	display:flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+.uploadResult ul li {
+	list-style: none;
+	padding: 10px;
+	align-content: center;
+	text-align: center;
+}
+.uploadResult ul li img{
+	width: 100px;
+}
+.uploadresult ul li span {
+	color: white;
+}
+.bigPictureWrapper {
+	position: absolute;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	top: 0%;
+	width: 100%;
+	height:100%;
+	background-color: gray;
+}
+.bigPicture {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.bigPicture img {
+	width:600px;
+}
+</style>
 
 <div class="row">
 	<div class= col-lg-12">
@@ -46,6 +93,26 @@
 		</div>
 	</div>
 </div>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-defalt">
+		
+			<div class="panel-heading">Files</div>
+			<div class="panel-body">
+	
+			<div class='uploadResult'>
+				<ul>
+				
+				</ul>
+			</div>
+				
+				
+				
+			</div>
+			
+		</div>
+	</div>		
+</div>
 <div class='row'>
 	
 	<div class="col-lg-12">
@@ -78,8 +145,8 @@
 			</div>
 		</div>
 	</div>
-</div>
 
+		
 <div class="modal fade" id="myModal" tabindex="-1" 
 	role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
        <div class="modal-dialog">
@@ -363,6 +430,38 @@
 			operForm.attr("action","/board/list").submit();
 		});
 	});
+	
+	$(document).ready(function() {
+		var bno = '<c:out value="${board.bno}"/>';
+		
+		$.getJSON("/board/getAttachList", {bno:bno}, function(arr){
+			
+			console.log(arr);
+			
+			var str = "";
+			
+			$(arr).each(function(i, attach){
+				
+				if(attach.fileType){
+					var fileCallPath = encodeURIComponent(attach.uploadPath+ "/s_"+ attach.uuid + "_" + attach.fileName);
+					console.log(+fileCallPath);
+					str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'><div>";
+					str += "<img src='/display?fileName"+fileCallPath+"'>";
+					str += "</div>";
+					str +"</li>";
+				}else{
+					
+					str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'><div>";
+					str += "<span> "+ attach.fileName+"</span><br/>";
+					str += "<img src='/resources/img/test4.png'>"
+					str += "</div>";
+					str + "</li>";
+				}
+			})
+			$(".uploadResult ul").html(str);
+		});	
+	});
+
 </script>
 
 <%@include file="../includes/footer.jsp"%>

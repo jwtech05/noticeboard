@@ -41,7 +41,7 @@
 		
 			<div class="panel-heading">File Attach</div>
 			<div class="panel-body">
-				<div class="form group uploadDiv">
+				<div class="form-group uploadDiv">
 					<input type="file" name='uploadFile' multiple>
 				</div>
 				<div class='uploadResult'>
@@ -75,9 +75,9 @@ function showUploadResult(uploadResultArr){
 			str += "<li data-path='"+obj.uploadPath+"'";
 			str += "data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 			str += "><div>";
-			str += "<li><div>";
 			str += "<span>" + obj.fileName+"</span>";
-			str += "<button type='button' data-file=\'"+fileCallPath+"\'data-type='image' class='btn btn-warning btn=circle'><i class='fa fa-times'></i></button><br>";
+			str += "<button type='button' data-file=\'"+fileCallPath+"\'"
+			str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
 			str += "<img src='/display?fileName="+fileCallPath+"'>";
 			str += "</div>";
 			str += "</li>";
@@ -89,9 +89,8 @@ function showUploadResult(uploadResultArr){
 			str += "<li data-path='"+obj.uploadPath+"'";
 			str += "data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 			str += "><div>";
-			str += "<li><div>";
 			str += "<span> "+ obj.fileName+"</span>";
-			str += "<button type='button' data-file=\'"+fileCallPath+"\'data-type='file' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+			str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
 			str += "<img src='/resources/img/test4.png'></a>";
 			str += "</div>";
 			str +"</li>";
@@ -124,7 +123,7 @@ $(".uploadResult").on("click", "button", function(e){
 
 	$(document).ready(function(e){
 		
-		var formObj = $("from[role='form']");
+		var formObj = $("form[role='form']");
 		
 		$("button[type='submit']").on("click", function(e){
 			
@@ -147,8 +146,9 @@ $(".uploadResult").on("click", "button", function(e){
 				
 			});
 			
-			formObj.append(str).submit;
+			formObj.append(str).submit();
 		});
+		
 		var regex =new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 		var maxSize = 524880;
 		
