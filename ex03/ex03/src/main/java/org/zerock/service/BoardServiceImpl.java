@@ -54,7 +54,7 @@ public class BoardServiceImpl implements BoardService{
 		@Override
 		public boolean modify(BoardVO board) {
 			
-			log.info("modify........" + board);
+			log.info("modify......." + board);
 			
 			return mapper.update(board) == 1;
 		}
@@ -62,7 +62,7 @@ public class BoardServiceImpl implements BoardService{
 		@Override
 		public boolean remove(Long bno) {
 			
-			log.info("remove........" + bno);
+			log.info("remove......." + bno);
 			
 			return mapper.delete(bno) == 1;
 		}
