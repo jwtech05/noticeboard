@@ -164,6 +164,11 @@
 		
 		$(".move").on("click", function(e){
 			
+			var bno = actionForm.find("input[name='bno']").val();
+			if(bno!=''){
+				actionForm.find("input[name='bno']").remove();
+			}
+			
 			e.preventDefault();
 			actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
 			actionForm.attr("action", "/board/get");
@@ -171,6 +176,7 @@
 			
 		});
 		
+
 		var searchForm = $("#searchForm");
 		
 		$("#searchForm button").on("click", function(e){

@@ -412,9 +412,8 @@
 				showList(pageNum);
 			});
 	});
-</script> 
-<script type="text/javascript">
-	$(document).ready(function() {
+	
+$(document).ready(function() {
 		
 		var operForm = $("#operForm");
 		
@@ -460,8 +459,41 @@
 			})
 			$(".uploadResult ul").html(str);
 		});	
+		
+		$(".uploadResult").on("click", "li", function(e){
+			
+			console.log("view image");
+			
+			var liObj = $(this);
+			
+			var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
+			
+			if(liObj.data("type")){
+				showImage(path.replace(new RegExp(/\\/g),"/"));
+			}else{
+				self.location= "/download?fileName="+path
+			}
+		});
+		
+		function showImage(fileCallPath){
+			
+			alert(fileCallPath);
+			
+			$(".bigPictureWrapper").css("display","flex").show();
+			
+			$(".bigPicutre")
+			.html("<img src='/display?fileName="+fileCallPath+"'>")
+			.animate({width:'100%', height:'100%'}, 1000);
+			}
+	});	
+	
+	$(".bigPictureWrapper").on("click", function(e){
+		$(".bigPicture").animate({width:'0', height: '0%'}, 1000);
+		setTimeout(function(){
+			$('.bigPictureWrapper').hide();
+		},1000);
 	});
 
-</script>
+</script> 
 
 <%@include file="../includes/footer.jsp"%>
