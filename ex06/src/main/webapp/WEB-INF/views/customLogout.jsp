@@ -7,24 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Custom Login Page</h1>
-<h2><c:out value="${error}"/></h2>
-<h2><c:out value="${logout}"/></h2>
+<h1>Logout Page</h1>
 
-<form method='post' action="/login">
-
-<div>
-	<input type='text' name='username' value='admin'>
- </div>
- <div>
-	<input type='password' name='password' value='admin'>
- </div>
- <div>
-	<input type='submit'>
- </div>
- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
- </form>
+<form action="/customLogout" method='post'>
+<input type="hidden"name="${_csrf.parameterName }"value="${_csrf.token }"/>
+<button>로그아웃</button>
+</form>
 
 </body>
 </html>
