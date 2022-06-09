@@ -65,7 +65,7 @@
 			<div class="panel-heading">Board Modify Page</div>
 			<div class="panel-body">
 				<form role="form" action="/board/modify" method="post">
-				
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<div class="form-group">
 						<label>Bno</label> <input class="form-control" name='bno' value='<c:out value="${board.bno }"/>' readonly="readonly">
 					</div>
@@ -90,9 +90,18 @@
 					<input type='hidden' name='type' value='<c:out value="${cri.type}"/>' />
 					<input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>' />
 					
+					<sec:authentication property="principal" var="pinfo"/>
+					
+					<sec:authorize access="isAuthenticated()">
+					
+					<c:if test="${pinfo.username eq board.writer }">
+					
 					
 					<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
 					<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
+					
+					</c:if>
+					</sec:authorize>
 					<button type="submit" data-oper='list'  class="btn btn-info">List</button>
 				</form>
 			</div>
@@ -231,6 +240,8 @@ $(document).ready(function(){
 		return true;
 	}
 
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
 	
 	$("input[type='file']").change(function(e){
 		
@@ -257,6 +268,9 @@ $(document).ready(function(){
 			contentType: false, 
 			data: formData,
 			type: 'POST',
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
 			dataType: 'json',
 			success: function(result) {
 				console.log(result);
