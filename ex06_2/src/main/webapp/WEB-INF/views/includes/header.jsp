@@ -260,7 +260,7 @@
                         <li class="divider"></li>
                         <sec:authorize access="isAuthenticated()">
                         
-                        <li><a href="customLogout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="/customLogout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                         </sec:authorize>
                         
